@@ -4,12 +4,24 @@
     <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css" />
   </head>
   <body ng-controller="StoreController as store">
-    <div ng-repeat="product in store.products">
-      <h1>{{product.name}}</h1>
-      <h2>${{product.price}}</h2>
-      <p>{{product.description}}</p>
-      <button ng-show="product.canPurchase">Add to Cart</button>
-    </div>
+    <ul class="list-group">
+      <li class="list-group-item" ng-repeat="product in store.products">
+        <h1>{{product.name}}</h1>
+        <em class="pull-right">{{product.price | currency}}</em>
+        <p>{{product.description}}</p>
+          <button ng-show="product.canPurchase">Add to Cart</button>
+      </li>
+      {{tab}}
+    </ul>
+
+    <section ng-controller="PanelController as panel">
+      <ul class="nav nav-pills">
+        <li ng-class="{active:panel.isSelected(1) }"><a href ng-click="panel.selectTab(1)">Description</a></li>
+        <li ng-class="{active:panel.isSelected(2) }"><a href ng-click="panel.selectTab(2)">Specification</a></li>
+        <li ng-class="{active:panel.isSelected(3) }"><a href ng-click="panel.selectTab(3)">Reviews</a></li>
+      </ul>
+    </section>
+
     <script type="text/javascript" src="/node_modules/angular/angular.min.js"></script>
     <script type="text/javascript" src="app.js"></script>
   </body>
