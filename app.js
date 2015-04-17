@@ -24,10 +24,10 @@
     canPurchase: true,
     soldOut: false,
     images: [
-    {
-      full: 'ruby.jpeg',
-      thumb: 'image.png'
-    }
+      {
+        full: 'ruby.jpeg',
+        thumb: 'image.png'
+      }
     ],
     reviews: [
       {

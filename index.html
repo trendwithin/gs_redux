@@ -7,33 +7,34 @@
     <ul class="list-group">
       <li class="list-group-item" ng-repeat="product in store.products">
         <h1>{{product.name}}</h1>
-        <em class="pull-right">{{product.price | currency}}</em>
+        <em class="pull-right">{{product.price | currency}}<br /></em>
+        <button ng-show="product.canPurchase">Add to Cart</button>
          <section ng-controller="PanelController as panel">
            <ul class="nav nav-pills">
               <li ng-class="{active:panel.isSelected(1) }"><a href ng-click="panel.selectTab(1)">Description</a></li>
               <li ng-class="{active:panel.isSelected(2) }"><a href ng-click="panel.selectTab(2)">Specification</a></li>
               <li ng-class="{active:panel.isSelected(3) }"><a href ng-click="panel.selectTab(3)">Reviews</a></li>
-            </ul>
-         </section>
-         <button ng-show="product.canPurchase">Add to Cart</button>
+           </ul>
+
+          <div class="panel" ng-show="panel.isSelected(1)">
+            <h4>Product Description</h4>
+            <p>{{product.description}}</p>
+          </div>
+          <div class="panel" ng-show="panel.isSelected(2)">
+            <h4>Specifications</h4>
+            <blockquote>None Yet</blockquote>
+          </div>
+          <div class="panel" ng-show="panel.isSelected(3)">
+            <h4> Reviews </h4>
+            <blockquote ng-repeat="review in product.reviews">
+            <b>Stars: {{review.stars}}</b>
+            {{review.body}}
+            <cite>by: {{review.author}}</cite>
+            </blockquote>
+          </div>
+        </section>
       </li>
     </ul>
-
-    <section class="nav nav-pills" ng-init="tab = 1">
-      <div class="panel" ng-show="tab === 1">
-        <h4>Description</h4>
-        <p>{{product.description}}</p>
-      </div>
-      <div class="panel" ng-show="tab === 2">
-        <h4>Specifications</h4>
-        <blockquote>None Yet</blockquote>
-      </div>
-      <div class="panel" ng-show="tab === 3">
-        <h4> Reviews </h4>
-        <blockquote>None Yet</blockquote>
-      </div>
-    </section>
-
     <script type="text/javascript" src="/node_modules/angular/angular.min.js"></script>
     <script type="text/javascript" src="app.js"></script>
   </body>
