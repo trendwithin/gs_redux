@@ -28,6 +28,13 @@
       full: 'ruby.jpeg',
       thumb: 'image.png'
     }
+    ],
+    reviews: [
+      {
+        stars: 5,
+        body: "I love rails",
+        author: "me@you.com"
+      }
     ]
   },
   {
