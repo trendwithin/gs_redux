@@ -1,9 +1,13 @@
 (function() {
-  var app = angular.module('store', [ ]);
+  var app = angular.module('store', ['product-directives']);
 
-  app.controller('StoreController', function() {
-    this.products = gems;
-  });
+  app.controller('StoreController', [ '$http',function($http) {
+    var store = this;
+    store.products = [];
+    $http.get('products.json').success(function(data){
+      store.products = data;
+    });
+  }]);
 
   app.controller("ReviewController", function(){
     this.review = {};
@@ -24,57 +28,6 @@
       return this.tab === checkTab;
     };
   });
-  app.directive('productTitle', function() {
-    return{
-      restrict: 'E',
-      templateUrl: 'product-title.html'
-    };
-  });
-  app.directive('productForm', function() {
-    return{
-      restrict: 'E',
-      templateUrl: 'product-form.html'
-    };
-  });
-  app.directive('productPanel', function() {
-  return{
-    restrict: 'E',
-    templateUrl: 'product-panel.html',
-    controller:function(){
-
-    },
-    controllerAs: 'panel'
-    };
-  });
-
-
-  var gems = [
-  {
-    name: 'Ruby',
-    price: 2.95,
-    description: '. . .',
-    canPurchase: true,
-    soldOut: false,
-    images: [
-      {
-        full: 'ruby.jpeg',
-        thumb: 'image.png'
-      }
-    ],
-    reviews: [
-      {
-        stars: 5,
-        body: "I love rails",
-        author: "me@you.com"
-      }
-    ]
-  },
-  {
-    name: "Opal",
-    price: 4.34,
-    description: '...',
-  }
-  ];
 })();
 
 
